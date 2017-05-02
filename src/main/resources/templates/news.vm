@@ -1,0 +1,49 @@
+<html>
+<body>
+<pre>
+##注释
+#*
+多行注释
+ *#
+value1 : $!{value1}
+$!{value2}
+${value3}
+
+##velocity中的循环控制语句
+#foreach($color in $colors)
+    Colors   $!{foreach.index} : $!{foreach.count}   :     $!{color}
+#end
+
+#foreach($key in $map.keySet())
+    Number  $!{foreach.index} : $!{foreach.count}    :    $key   :   $map.get($key)
+#end
+
+另一种不同的方式取值: value1  :  ${value1}
+
+    User: $!{user.name}
+    User : $!{user.getName()}
+
+    #set($title = "nanjing")
+    Include : #include("header.vm")
+    Parse : #parse("header.vm")
+
+    #macro (render_color, $color, $index)
+        Color By Macro : $index , $color
+    #end
+
+    #foreach($color in $colors)
+        #render_color($color,$foreach.index)
+    #end
+
+    #set($hello = "hello")
+    #set($hworld1 = "$!{hello} world")
+    #set($hworld2 = '$!{hello} world')
+
+    hworld1 : $hworld1
+    hworld2 : $hworld2
+
+    $!{colors.size()}
+
+</pre>
+</body>
+</html>
