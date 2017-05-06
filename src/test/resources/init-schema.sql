@@ -11,6 +11,7 @@ CREATE TABLE `toutiao`.`user` (
   DEFAULT CHARACTER SET = utf8
   COLLATE = utf8_bin;
 drop table if exists news;
+
 CREATE TABLE `toutiao`.`news` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(128) NOT NULL,
@@ -24,3 +25,12 @@ CREATE TABLE `toutiao`.`news` (
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8
   COLLATE = utf8_bin;
+
+  drop table if exists login_ticket;
+CREATE TABLE `toutiao`.`login_ticket` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `ticket` VARCHAR(45) NOT NULL,
+  `expired` DATETIME NOT NULL,
+  `status` INT NULL DEFAULT 0,
+  PRIMARY KEY (`id`));

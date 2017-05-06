@@ -4,6 +4,7 @@ import com.nowcoder.model.News;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public interface NewsDAO {
                 "values(#{title},#{link},#{image},#{likeCount},#{commentCount},#{userId},#{createdDate})"})
     int addNews(News news);
 
+    @Select({"select * from " , TABLE_NAME , " order by created_date desc limit #{offset},#{limit}"})
     List<News> selectByUserIdAndOffset(@Param("userId") int userId , @Param("offset") int offset , @Param("limit") int limit);
 
 }
