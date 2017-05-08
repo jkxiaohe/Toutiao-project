@@ -1,7 +1,7 @@
 package com.nowcoder.interceptor;
 
 import com.nowcoder.dao.LoginTicketDAO;
-import com.nowcoder.dao.UserDao;
+import com.nowcoder.dao.UserDAO;
 import com.nowcoder.model.HostHolder;
 import com.nowcoder.model.LoginTicket;
 import com.nowcoder.model.User;
@@ -22,7 +22,7 @@ import java.util.Date;
 public class PassportInterceptor  implements HandlerInterceptor {
 
     @Autowired
-    private UserDao userDao;
+    private UserDAO userDAO;
     @Autowired
     private LoginTicketDAO loginTicketDAO;
     @Autowired
@@ -45,7 +45,7 @@ public class PassportInterceptor  implements HandlerInterceptor {
             if(loginTicket == null || loginTicket.getExpired().before(new Date()) || loginTicket.getStatus() != 0){
                 return true;
             }
-            User user = userDao.selectById(loginTicket.getUserId());
+            User user = userDAO.selectById(loginTicket.getUserId());
             hostHolder.setUser(user);
         }
         return true;

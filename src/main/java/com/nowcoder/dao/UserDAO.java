@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
  * Created by dell on 2017/5/3.
  */
 @Mapper
-public interface UserDao {
+public interface UserDAO {
     String TABLE_NAME = "user";
     String INSERT_FIELDS = " name,password,salt,head_url ";
     String SELECT_FIELDS = " id,name,password,salt,head_url ";

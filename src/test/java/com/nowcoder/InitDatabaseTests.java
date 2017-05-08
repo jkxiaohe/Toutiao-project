@@ -2,7 +2,7 @@ package com.nowcoder;
 
 import com.nowcoder.dao.LoginTicketDAO;
 import com.nowcoder.dao.NewsDAO;
-import com.nowcoder.dao.UserDao;
+import com.nowcoder.dao.UserDAO;
 import com.nowcoder.model.LoginTicket;
 import com.nowcoder.model.News;
 import com.nowcoder.model.User;
@@ -26,7 +26,7 @@ import java.util.Random;
 public class InitDatabaseTests {
 
     @Autowired
-    UserDao userDao;
+    UserDAO userDAO;
 
     @Autowired
     NewsDAO newsDAO;
@@ -43,7 +43,7 @@ public class InitDatabaseTests {
             user.setName(String.format("USER%d" , i));
             user.setPassword("");
             user.setSalt("");
-            userDao.addUser(user);
+            userDAO.addUser(user);
 
             News news = new News();
             news.setCommentCount(i);
@@ -58,7 +58,7 @@ public class InitDatabaseTests {
             newsDAO.addNews(news);
 
             user.setPassword("newpassword");
-            userDao.updatePassword(user);
+            userDAO.updatePassword(user);
 
             LoginTicket ticket = new LoginTicket();
             ticket.setStatus(0);
@@ -69,8 +69,8 @@ public class InitDatabaseTests {
 
         }
 
-        Assert.assertEquals("newpassword" , userDao.selectById(1).getPassword());
-        userDao.deleteById(1);
-        Assert.assertNull(userDao.selectById(1));
+        Assert.assertEquals("newpassword" , userDAO.selectById(1).getPassword());
+        userDAO.deleteById(1);
+        Assert.assertNull(userDAO.selectById(1));
     }
 }
