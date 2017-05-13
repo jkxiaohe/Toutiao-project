@@ -40,13 +40,13 @@ public class LoginController {
                     cookie.setMaxAge(3600*24*3);
                 }
                 response.addCookie(cookie);
-                return ToutiaoUtil.getJSONString(0 , "登陆成功");
+                return ToutiaoUtil.getJSONString(0 , "注册成功");
             }else{
                 return ToutiaoUtil.getJsongString(1,map);
             }
         }catch(Exception e){
-            logger.error("登陆异常 " + e.getMessage());
-            return ToutiaoUtil.getJSONString(1,"登陆异常");
+            logger.error("注册异常 " + e.getMessage());
+            return ToutiaoUtil.getJSONString(1,"注册异常");
         }
     }
 
@@ -59,20 +59,19 @@ public class LoginController {
         try{
             Map<String,Object> map= userService.login(username,password);
             if(map.containsKey("ticket")){
-                //说明用户携带有ticket
                 Cookie cookie = new Cookie("ticket" , map.get("ticket").toString());
                 cookie.setPath("/");
                 if(rememberme>0){
                     cookie.setMaxAge(3600*24*3);
                 }
                 response.addCookie(cookie);
-                return ToutiaoUtil.getJSONString(0 , "注册成功");
+                return ToutiaoUtil.getJSONString(0 , "登陆成功");
             }else{
                 return ToutiaoUtil.getJsongString(1,map);
             }
         }catch(Exception e){
-            logger.error("注册异常 " + e.getMessage());
-            return ToutiaoUtil.getJSONString(1,"注册异常");
+            logger.error("登陆常 " + e.getMessage());
+            return ToutiaoUtil.getJSONString(1,"登陆异常");
         }
     }
 

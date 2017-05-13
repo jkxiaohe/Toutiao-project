@@ -42,7 +42,7 @@
                             </div>
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object app-qrcode" src="../images/res/qrcode.png" alt="App qrcode web index">
+                                    <img class="media-object app-qrcode" src="/images/res/qrcode.png" alt="App qrcode web index">
                                 </div>
                                 <div class="media-body">
                                     <div class="buttons">
@@ -82,13 +82,13 @@
                         <button class="click-dislike down" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
                         </button>
                     </div>
-                    <div class="content" data-url="http://nowcoder.com/posts/5l3hjr">
+                    <div class="content" data-url="/news/$!{news.id}">
                         <div >
                             <img class="content-img" src="$!{vo.news.image}" alt="">
                         </div>
                         <div class="content-main">
                             <h3 class="title">
-                                <a target="_blank" rel="external nofollow" href="$!{vo.news.link}">$!{vo.news.title}</a>
+                                <a target="_blank" rel="external nofollow" href="/news/$!{vo.news.id}">$!{vo.news.title}</a>
                             </h3>
                             <div class="meta">
                                 $!{vo.news.link}
@@ -136,8 +136,11 @@
 
 </div>
 
+
+#if ($pop)
 <script>
     window.loginpop = $!{pop};
 </script>
+#end
 
 #parse("footer.html")

@@ -34,3 +34,18 @@ CREATE TABLE `toutiao`.`login_ticket` (
   `expired` DATETIME NOT NULL,
   `status` INT NULL DEFAULT 0,
   PRIMARY KEY (`id`));
+
+  drop table if exists comment;
+CREATE TABLE `toutiao`.`comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `content` TEXT NOT NULL,
+  `user_id` INT NOT NULL,
+  `entity_id` INT NOT NULL,
+  `entity_type` INT NOT NULL,
+  `created_date` DATETIME NULL,
+  `status` INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `index` (`entity_id` ASC, `entity_type` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_bin;

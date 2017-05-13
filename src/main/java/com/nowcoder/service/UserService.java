@@ -65,9 +65,16 @@ public class UserService {
             map.put("msgname" , "用户名不存在");
             return map;
         }
-        if(!ToutiaoUtil.MD5(password+user.getSalt()).equals(user.getPassword())){
-            map.put("msgpwd" , "密码不正确");
-            return map;
+        String salt = user.getSalt();
+        if(salt.equals("")){
+            if(!user.getPassword().equals(password)){
+                map.put("msgpwd"  , "密码不正确");
+            }
+        }else{
+            if(!ToutiaoUtil.MD5(password+user.getSalt()).equals(user.getPassword())){
+                map.put("msgpwd" , "密码不正确");
+                return map;
+            }
         }
         String ticket = addLoginTicket(user.getId());
         map.put("ticket" , ticket);

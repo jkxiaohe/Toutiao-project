@@ -1,10 +1,7 @@
 package com.nowcoder.dao;
 
 import com.nowcoder.model.News;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -18,10 +15,18 @@ public interface NewsDAO {
     String SELECT_FIELDS = " id , " + INSERT_FIELDS;
 
 
-    @Select({"select * from " , TABLE_NAME , " order by created_date desc limit #{offset},#{limit}"})
+
     List<News> selectByUserIdAndOffset(@Param("userId") int userId , @Param("offset") int offset , @Param("limit") int limit);
+
+    @Select({"select " , SELECT_FIELDS , "from " , TABLE_NAME , "where id=#{id}"})
+    News getById(int id);
 
     @Insert({"insert into " , TABLE_NAME , "(" , INSERT_FIELDS , ")" ,
             "values(#{title},#{link},#{image},#{likeCount},#{commentCount},#{userId},#{createdDate})"})
     int addNews(News news);
+
+    //更新当前资讯的评论数
+    @Update({"update " , TABLE_NAME , "set comment_count=#{commentCount} where id=#{id}"})
+    int updateCommentCount(@Param("commentCount") int commentCount , @Param("id") int id);
+
 }

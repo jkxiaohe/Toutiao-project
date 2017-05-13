@@ -43,7 +43,7 @@ public class HomeController {
 
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) {
-        model.addAttribute("vos", getNews(4, 0, 10));
+        model.addAttribute("vos", getNews(0, 0, 10));
         return "home";
     }
 
