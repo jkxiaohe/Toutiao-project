@@ -29,4 +29,7 @@ public interface NewsDAO {
     @Update({"update " , TABLE_NAME , "set comment_count=#{commentCount} where id=#{id}"})
     int updateCommentCount(@Param("commentCount") int commentCount , @Param("id") int id);
 
+    //更新当前资讯的点赞数
+    @Update({"update " , TABLE_NAME , " set like_count=#{likeCount} where id=#{id}"})
+    int updateLikeCount(@Param("likeCount") int likeCount , @Param("id") int id);
 }
