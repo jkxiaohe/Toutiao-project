@@ -1,48 +1,54 @@
 <html>
 <body>
 <pre>
-##注释
+Hello VM.
+
+## 你看不到我
+
 #*
-多行注释
- *#
-value1 : $!{value1}
+这里都看不到
+*#
+
+value1:$!{value1}
 $!{value2}
 ${value3}
 
-##velocity中的循环控制语句
-#foreach($color in $colors)
-    Colors   $!{foreach.index} : $!{foreach.count}   :     $!{color}
+#foreach ($color in $colors)
+Color $!{foreach.index}/$!{foreach.count}: $!{color}
 #end
 
 #foreach($key in $map.keySet())
-    Number  $!{foreach.index} : $!{foreach.count}    :    $key   :   $map.get($key)
+Number $!{foreach.index}/$!{foreach.count}: $!{key} $map.get($key)
 #end
 
-另一种不同的方式取值: value1  :  ${value1}
+#foreach($kv in $map.entrySet())
+Number $!{foreach.index}/$!{foreach.count}: $!{kv.key} $!{kv.value}
+#end
 
-    User: $!{user.name}
-    User : $!{user.getName()}
 
-    #set($title = "nanjing")
-    Include : #include("header.vm")
-    Parse : #parse("header.vm")
+User:$!{user.name}
+User:$!{user.getName()}
 
-    #macro (render_color, $color, $index)
-        Color By Macro : $index , $color
-    #end
+#set($title = "nowcoder")
+Include: #include("header.vm") <br>
+Parse:#parse("header.vm")
 
-    #foreach($color in $colors)
-        #render_color($color,$foreach.index)
-    #end
+#macro (render_color, $color, $index)
+Color By Macro $index, $color
+#end
 
-    #set($hello = "hello")
-    #set($hworld1 = "$!{hello} world")
-    #set($hworld2 = '$!{hello} world')
+#foreach ($color in $colors)
+    #render_color($color, $foreach.index)
+#end
 
-    hworld1 : $hworld1
-    hworld2 : $hworld2
+#set($hello = "hello")
+#set($hworld1 = "$!{hello} world")
+#set($hworld2 = '$!{hello} world')
 
-    $!{colors.size()}
+hworld1:$hworld1
+hworld2:$hworld2
+
+$!{colors.size()}
 
 </pre>
 </body>
